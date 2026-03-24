@@ -1,0 +1,14 @@
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\bin\Debug\net8.0\ProjetoTCC.exe
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\bin\Debug\net8.0\ProjetoTCC.deps.json
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\bin\Debug\net8.0\ProjetoTCC.runtimeconfig.json
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\bin\Debug\net8.0\ProjetoTCC.dll
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\bin\Debug\net8.0\ProjetoTCC.pdb
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ProjetoTCC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ProjetoTCC.AssemblyInfoInputs.cache
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ProjetoTCC.AssemblyInfo.cs
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ProjetoTCC.csproj.CoreCompileInputs.cache
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ProjetoTCC.dll
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\refint\ProjetoTCC.dll
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ProjetoTCC.pdb
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ProjetoTCC.genruntimeconfig.cache
+C:\Users\kauan\OneDrive\Documentos\Projetos\Projeto TCC\ProjetoTCC\ProjetoTCC\obj\Debug\net8.0\ref\ProjetoTCC.dll
