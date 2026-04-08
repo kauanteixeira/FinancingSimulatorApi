@@ -9,6 +9,7 @@ namespace ProjetoTCC.Models
         public double ValorEntrada;
         public double TaxaJuros;
         public int PrazoFinanciamento;
+        public string TipoFinanciamento = "";
 
         public double CalcularValorFinanciado()
         {
@@ -18,33 +19,66 @@ namespace ProjetoTCC.Models
         {
             return TaxaJuros / 100;
         }
-        public double CalcularParcela()
+        public class Parcela
         {
-            double taxaMensal = ConverterTaxa();
-            double valorFinanciado = CalcularValorFinanciado();
-            double fatorJurosCompostos = Math.Pow(1 + taxaMensal, PrazoFinanciamento);
-            return valorFinanciado * (taxaMensal * fatorJurosCompostos / (fatorJurosCompostos - 1));
+            public int Numero;
+            public double Valor;
+            public double Juros;
+            public double Amortizacao;
+            public double SaldoDevedor;
         }
-        public double CalcularTotalPago()
+        public List<Parcela> GerarParcelas()
         {
-            double parcela = CalcularParcela();
-            return parcela * PrazoFinanciamento;
-        }
-        public double CalcularJuros()
-        {
-            double totalPago = CalcularTotalPago();
-            double valorFinanciado = CalcularValorFinanciado();
-            return totalPago - valorFinanciado;
-        }
-        public override string ToString()
-        {
-            return "\nValor do Imóvel: " + ValorImovel.ToString("C", new CultureInfo("pt-BR"))
-                + "  |  Entrada: " + ValorEntrada.ToString("C", new CultureInfo("pt-BR"))
-                + "\nSaldo Devedor: " + CalcularValorFinanciado().ToString("C", new CultureInfo("pt-BR"))
-                + "  |  Total pago (com juros): " + CalcularTotalPago().ToString("C", new CultureInfo("pt-BR"))
-                + "\nJuros Pagos: " + CalcularJuros().ToString("C", new CultureInfo("pt-BR"))
-                + "  |  Taxa de juros: " + TaxaJuros + "% (ao mês)"
-                + "\nPrazo/Periodo: " + PrazoFinanciamento;
+
+            if (TipoFinanciamento.ToUpper() == "SAC")
+            {
+                List<Parcela> parcelas = new List<Parcela>();
+                double saldoDevedor = CalcularValorFinanciado();
+                double amortizacao = saldoDevedor / PrazoFinanciamento;
+
+                for (int mes = 1; mes <= PrazoFinanciamento; mes++)
+                {
+                    Parcela parcela = new Parcela();
+                    parcela.Numero = mes;
+                    parcela.SaldoDevedor = saldoDevedor;
+                    parcela.Juros = saldoDevedor * ConverterTaxa();
+                    parcela.Amortizacao = amortizacao;
+                    parcela.Valor = amortizacao + parcela.Juros;
+
+                    parcelas.Add(parcela);
+
+                    saldoDevedor -= amortizacao;
+
+                }
+                return parcelas;
+            }
+            else
+            {
+                double taxaMensal = ConverterTaxa();
+                double saldoDevedor = CalcularValorFinanciado();
+                double fatorJurosCompostos = Math.Pow(1 + taxaMensal, PrazoFinanciamento);
+                double parcelaFixa = saldoDevedor * (taxaMensal * fatorJurosCompostos / (fatorJurosCompostos - 1));
+                List<Parcela> parcelas = new List<Parcela>();
+
+                for (int mes = 1; mes <= PrazoFinanciamento; mes++)
+                {
+                    double juros = saldoDevedor * taxaMensal;
+                    double amortizacao = parcelaFixa - juros;
+
+                    Parcela parcela = new Parcela();
+                    parcela.Numero = mes;
+                    parcela.SaldoDevedor = saldoDevedor;
+                    parcela.Juros = juros;
+                    parcela.Amortizacao = amortizacao;
+                    parcela.Valor = parcelaFixa;
+
+                    parcelas.Add(parcela);
+
+                    saldoDevedor -= amortizacao;
+
+                }
+                return parcelas;
+            }
         }
     }
 }

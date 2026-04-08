@@ -18,8 +18,17 @@ namespace ProjetoTCC.Services
 
             simulacao.PrazoFinanciamento = ValidarPrazo("Prazo em meses: ", x => x > 0, "O prazo precisa ser maior do que 0");
 
+            Console.Write("Tipo (SAC/PRICE): ");
+            simulacao.TipoFinanciamento = Console.ReadLine();
+
             Console.WriteLine($"\n========== SIMULAÇÃO ==========");
-            Console.WriteLine(simulacao);
+            var parcelas = simulacao.GerarParcelas();
+
+            foreach (var parcela in parcelas)
+            {
+                Console.WriteLine($"Mês: {parcela.Numero} | Parcela: {parcela.Valor.ToString("C", new CultureInfo("pt-BR"))}");
+                Console.ReadLine();
+            }
         }
 
         public double ValidarEntrada(string mensagem, Func<double, bool> regra, string mensagemErro)
