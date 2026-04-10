@@ -9,7 +9,7 @@ namespace ProjetoTCC.Models
         public double ValorEntrada;
         public double TaxaJuros;
         public int PrazoFinanciamento;
-        public string TipoFinanciamento = "";
+        public string TipoFinanciamento;
 
         public double CalcularValorFinanciado()
         {
@@ -30,7 +30,7 @@ namespace ProjetoTCC.Models
         public List<Parcela> GerarParcelas()
         {
 
-            if (TipoFinanciamento.ToUpper() == "SAC")
+            if (TipoFinanciamento == "SAC")
             {
                 List<Parcela> parcelas = new List<Parcela>();
                 double saldoDevedor = CalcularValorFinanciado();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using ProjetoTCC.Models;
 
@@ -18,17 +19,24 @@ namespace ProjetoTCC.Services
 
             simulacao.PrazoFinanciamento = ValidarPrazo("Prazo em meses: ", x => x > 0, "O prazo precisa ser maior do que 0");
 
-            Console.Write("Tipo (SAC/PRICE): ");
-            simulacao.TipoFinanciamento = Console.ReadLine();
-
+            simulacao.TipoFinanciamento = ValidaTipoFinanciamento();
+            
             Console.WriteLine($"\n========== SIMULAÇÃO ==========");
             var parcelas = simulacao.GerarParcelas();
+            double parcela = 0;
+            double juros = 0;
+            double amortizacao = 0;
 
-            foreach (var parcela in parcelas)
+            foreach (var p in parcelas)
             {
-                Console.WriteLine($"Mês: {parcela.Numero} | Parcela: {parcela.Valor.ToString("C", new CultureInfo("pt-BR"))}");
-                Console.ReadLine();
+                parcela += p.Valor;
+                juros += p.Juros;
+                amortizacao += p.Amortizacao;
+                Console.WriteLine($"Mês: {p.Numero} | Parcela: {p.Valor.ToString("C", new CultureInfo("pt-BR"))} | Juros: {p.Juros.ToString("C", new CultureInfo("pt-BR"))} | Amortização: {p.Amortizacao.ToString("C", new CultureInfo("pt-BR"))} | Saldo devedor: {p.SaldoDevedor.ToString("C", new CultureInfo("pt-BR"))}");
+                    
             }
+            Console.Write($"Total: | {parcela.ToString("C", new CultureInfo("pt-BR"))} | Pago em juros: {juros.ToString("C", new CultureInfo("pt-BR"))} | Amortizado: {amortizacao.ToString("C", new CultureInfo("pt-BR"))}");
+            Console.ReadLine();
         }
 
         public double ValidarEntrada(string mensagem, Func<double, bool> regra, string mensagemErro)
@@ -85,6 +93,27 @@ namespace ProjetoTCC.Services
                 }
             }
             return intNumero;
+        }
+        public string ValidaTipoFinanciamento()
+        {
+            bool tipoValido = false;
+            string tipoFinancamento = "";
+
+            while (!tipoValido)
+            {
+                Console.Write("Tipo do financiamento (SAC) ou (PRICE): ");
+                tipoFinancamento = Console.ReadLine().ToUpper();
+
+                if (tipoFinancamento == "SAC" || tipoFinancamento == "PRICE")
+                {
+                    tipoValido = true;
+                }
+                else
+                {
+                    Console.WriteLine("Tipo inválido, tente novamente!");
+                }
+            }
+            return tipoFinancamento;
         }
     }
 }
