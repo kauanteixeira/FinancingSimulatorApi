@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace ProjetoTCC.Models
 {
     public class Financiamento
     {
-        public double ValorImovel;
-        public double ValorEntrada;
-        public double TaxaJuros;
-        public int PrazoFinanciamento;
-        public string TipoFinanciamento;
+        public double ValorImovel { get; set; }
+        public double ValorEntrada { get; set; }
+        public double TaxaJuros { get; set; }
+        public int PrazoFinanciamento { get; set; }
+        public string TipoFinanciamento { get; set; }
 
         public double CalcularValorFinanciado()
         {
@@ -18,14 +19,6 @@ namespace ProjetoTCC.Models
         public double ConverterTaxa()
         {
             return TaxaJuros / 100;
-        }
-        public class Parcela
-        {
-            public int Numero;
-            public double Valor;
-            public double Juros;
-            public double Amortizacao;
-            public double SaldoDevedor;
         }
         public List<Parcela> GerarParcelas()
         {
@@ -80,6 +73,20 @@ namespace ProjetoTCC.Models
                 }
                 return parcelas;
             }
+        }
+        public ResumoFinanciamento CalcularTotais()
+        {
+            var resumo = new ResumoFinanciamento();
+
+            var parcelas = GerarParcelas();
+            foreach(var p in parcelas)
+            {
+                resumo.TotalPago += p.Valor;
+                resumo.TotalJuros += p.Juros;
+                resumo.TotalAmortizado += p.Amortizacao;
+            }
+
+            return resumo;
         }
     }
 }

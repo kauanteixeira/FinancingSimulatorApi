@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using ProjetoTCC.Models;
 
@@ -21,21 +20,19 @@ namespace ProjetoTCC.Services
 
             simulacao.TipoFinanciamento = ValidaTipoFinanciamento();
             
-            Console.WriteLine($"\n========== SIMULAÇÃO ==========");
+            Console.WriteLine($"\n==================== SIMULAÇÃO ====================");
             var parcelas = simulacao.GerarParcelas();
-            double parcela = 0;
-            double juros = 0;
-            double amortizacao = 0;
+            var resumo = simulacao.CalcularTotais();
 
+            Console.WriteLine("Mês | Parcela      | Juros        | Amortização  | Saldo Devedor");
+            Console.WriteLine("-------------------------------------------------------------------");
             foreach (var p in parcelas)
             {
-                parcela += p.Valor;
-                juros += p.Juros;
-                amortizacao += p.Amortizacao;
-                Console.WriteLine($"Mês: {p.Numero} | Parcela: {p.Valor.ToString("C", new CultureInfo("pt-BR"))} | Juros: {p.Juros.ToString("C", new CultureInfo("pt-BR"))} | Amortização: {p.Amortizacao.ToString("C", new CultureInfo("pt-BR"))} | Saldo devedor: {p.SaldoDevedor.ToString("C", new CultureInfo("pt-BR"))}");
-                    
+                Console.WriteLine($"{p.Numero, -3} | {p.Valor.ToString("C", new CultureInfo("pt-BR")), -12} | {p.Juros.ToString("C", new CultureInfo("pt-BR")), -12} | {p.Amortizacao.ToString("C", new CultureInfo("pt-BR")), -12} | {p.SaldoDevedor.ToString("C", new CultureInfo("pt-BR")), -12}");
+                Console.WriteLine("-------------------------------------------------------------------");
             }
-            Console.Write($"Total: | {parcela.ToString("C", new CultureInfo("pt-BR"))} | Pago em juros: {juros.ToString("C", new CultureInfo("pt-BR"))} | Amortizado: {amortizacao.ToString("C", new CultureInfo("pt-BR"))}");
+            Console.WriteLine($"\n==================== TOTAIS ====================");
+            Console.Write($"Total Pago: | {resumo.TotalPago.ToString("C", new CultureInfo("pt-BR"))} | Pago em juros: {resumo.TotalJuros.ToString("C", new CultureInfo("pt-BR"))} | Amortizado: {resumo.TotalAmortizado.ToString("C", new CultureInfo("pt-BR"))}");
             Console.ReadLine();
         }
 
