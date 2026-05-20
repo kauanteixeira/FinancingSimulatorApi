@@ -35,6 +35,7 @@ C:\Users\kauan\OneDrive\Documentos\Projetos\ProjetoAPI\SimuladorFinanciamentoApi
 C:\Users\kauan\OneDrive\Documentos\Projetos\ProjetoAPI\SimuladorFinanciamentoApi\obj\Debug\net10.0\SimuladorFinanciamentoApi.genruntimeconfig.cache
 C:\Users\kauan\OneDrive\Documentos\Projetos\ProjetoAPI\SimuladorFinanciamentoApi\obj\Debug\net10.0\ref\SimuladorFinanciamentoApi.dll
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\bin\Debug\net10.0\appsettings.Development.json
+C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\bin\Debug\net10.0\appsettings.Example.json
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\bin\Debug\net10.0\appsettings.json
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\bin\Debug\net10.0\SimuladorFinanciamentoApi.staticwebassets.endpoints.json
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\bin\Debug\net10.0\SimuladorFinanciamentoApi.exe
@@ -144,6 +145,7 @@ C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinan
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\obj\Debug\net10.0\SimuladorFinanciamentoApi.csproj.CoreCompileInputs.cache
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\obj\Debug\net10.0\SimuladorFinanciamentoApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\obj\Debug\net10.0\SimuladorFinanciamentoApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\obj\Debug\net10.0\SimuladorFinanciamentoApi.sourcelink.json
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\kauan\OneDrive\Documentos\Projetos\FinancingSimulatorApi\SimuladorFinanciamentoApi\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
