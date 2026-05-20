@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimuladorFinanciamentoApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d79a60b0c1fd86290ffc468e24f3ab37b26b63c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimuladorFinanciamentoApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimuladorFinanciamentoApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
