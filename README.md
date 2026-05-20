@@ -2,7 +2,15 @@
 
 API REST desenvolvida com ASP.NET Core para simulação de financiamento imobiliário utilizando os sistemas SAC e PRICE.
 
-O projeto começou originalmente como uma aplicação de console em C# e posteriormente foi migrado para uma arquitetura Web API com foco em escalabilidade, organização de código, separação de responsabilidades e integração futura com banco de dados e front-end React.
+O projeto começou originalmente como uma aplicação Console em C# e posteriormente foi migrado para uma arquitetura Web API moderna, com foco em:
+
+- separação de responsabilidades
+- arquitetura em camadas
+- integração com banco de dados
+- escalabilidade
+- boas práticas de backend
+- persistência de dados
+- futura integração com front-end React
 
 ---
 
@@ -20,13 +28,17 @@ Além disso, o projeto também serve como estudo prático de:
 
 - ASP.NET Core Web API
 - arquitetura em camadas
+- Entity Framework Core
+- PostgreSQL
 - DTOs
 - Services
 - Controllers
 - Injeção de Dependência
 - validações
+- persistência de dados
 - fluxo HTTP
-- integração futura com PostgreSQL e Entity Framework
+- autenticação JWT
+- integração futura com React
 
 ---
 
@@ -34,21 +46,21 @@ Além disso, o projeto também serve como estudo prático de:
 
 ## Versão Inicial — Console Application
 
-O projeto começou como uma aplicação console em C# puro, onde:
+O projeto começou como uma aplicação Console em C#, onde:
 
 - o usuário digitava os dados manualmente no terminal
-- toda lógica ficava centralizada em uma única estrutura
-- as validações eram feitas utilizando loops e leitura de Console
-- os cálculos de SAC e PRICE eram executados diretamente na classe de financiamento
-- os resultados eram exibidos formatados no terminal
+- toda lógica ficava centralizada
+- as validações eram feitas manualmente
+- os cálculos de SAC e PRICE eram executados diretamente na aplicação
+- os resultados eram exibidos formatados no console
 
-A aplicação possuía:
+A estrutura inicial possuía:
 
-- classe `Financiamento`
-- classe `Parcela`
-- classe `ResumoFinanciamento`
-- `SimuladorService`
-- `Program.cs`
+- Financiamento
+- Parcela
+- ResumoFinanciamento
+- SimuladorService
+- Program.cs
 
 ---
 
@@ -69,7 +81,7 @@ O projeto foi reorganizado utilizando separação de responsabilidades.
 Responsáveis por:
 
 - receber requisições HTTP
-- validar automaticamente os dados enviados
+- validar dados automaticamente
 - chamar os Services
 - retornar respostas HTTP em JSON
 
@@ -81,8 +93,9 @@ Responsáveis pela transferência de dados entre cliente e servidor.
 
 Foram criados DTOs específicos para:
 
-- entrada de dados da simulação
-- saída de resultados da simulação
+- entrada de dados
+- saída de dados
+- respostas da API
 
 Isso evita expor diretamente as entidades internas da aplicação.
 
@@ -90,13 +103,14 @@ Isso evita expor diretamente as entidades internas da aplicação.
 
 ## Services
 
-Responsáveis pela regra de negócio.
+Responsáveis pela lógica de negócio.
 
-A lógica foi separada em:
+Atualmente o projeto possui:
 
-- `SimuladorService`
-- `SacService`
-- `PriceService`
+- SimuladorService
+- SacService
+- PriceService
+- UsuarioService
 
 Cada Service possui uma responsabilidade específica.
 
@@ -106,41 +120,128 @@ Cada Service possui uma responsabilidade específica.
 
 Representam as entidades do domínio da aplicação.
 
-Atualmente o projeto possui modelos como:
+Atualmente o projeto possui:
 
-- `Financiamento`
-- `Parcela`
-- `ResumoFinanciamento`
+- Financiamento
+- Parcela
+- ResumoFinanciamento
+- Usuario
+
+---
+
+## Data
+
+Responsável pela integração com banco de dados através do Entity Framework Core.
+
+Contém:
+
+- AppDbContext
+- DbSets
+- configuração de conexão com PostgreSQL
+
+---
+
+# Persistência de Dados
+
+O projeto agora possui integração completa com PostgreSQL utilizando Entity Framework Core como ORM.
+
+Foi implementado:
+
+- AppDbContext
+- DbSet para entidades
+- migrations automáticas
+- persistência real de dados
+- CRUD inicial de usuários
+- integração completa entre API e banco de dados
+
+Atualmente a aplicação já consegue:
+
+- cadastrar usuários
+- listar usuários
+- salvar dados no PostgreSQL
+- utilizar consultas com LINQ
+- utilizar operações assíncronas com async/await
+
+O Entity Framework Core é responsável por:
+
+- mapear entidades C# para tabelas
+- gerar SQL automaticamente
+- controlar migrations
+- rastrear alterações das entidades
+- persistir dados utilizando SaveChangesAsync()
 
 ---
 
 # Funcionalidades Implementadas
 
-- Simulação de financiamento imobiliário
+## Simulação de Financiamento
+
 - Sistema SAC
 - Sistema PRICE
-- Cálculo de juros
-- Cálculo de amortização
-- Cálculo do saldo devedor
-- Retorno completo das parcelas
-- Resumo total do financiamento
-- API REST
+- cálculo de juros
+- cálculo de amortização
+- cálculo do saldo devedor
+- resumo total do financiamento
+- retorno completo das parcelas
+
+---
+
+## API REST
+
+- Controllers
+- endpoints HTTP
+- retorno JSON estruturado
 - Swagger/OpenAPI
-- Validações automáticas
-- Tratamento de exceções
-- Injeção de dependência
-- Arquitetura modular
+- validações automáticas
+- tratamento de exceções
+- arquitetura modular
+- Injeção de Dependência
+
+---
+
+## Banco de Dados
+
+- PostgreSQL
+- Entity Framework Core
+- migrations
+- persistência de dados
+- CRUD de usuários
+- integração completa API ↔ banco
 
 ---
 
 # Tecnologias Utilizadas
 
+## Linguagens
+
 - C#
+- SQL
+- JSON
+
+---
+
+## Frameworks e Bibliotecas
+
 - ASP.NET Core Web API
+- Entity Framework Core
+- Npgsql
 - Swagger / OpenAPI
-- .NET
+
+---
+
+## Banco de Dados
+
+- PostgreSQL
+
+---
+
+## Ferramentas
+
 - Git
 - GitHub
+- DBeaver
+- Postman
+- VS Code
 
 ---
 
@@ -153,6 +254,8 @@ FinancingSimulatorApi/
 ├── DTOs/
 ├── Models/
 ├── Services/
+├── Data/
+├── Migrations/
 ├── Properties/
 ├── Program.cs
 ├── appsettings.json
@@ -161,14 +264,54 @@ FinancingSimulatorApi/
 
 ---
 
+# Fluxo da Aplicação
+
+```txt
+Cliente/Postman
+↓
+Controller
+↓
+Service
+↓
+DbContext
+↓
+Entity Framework Core
+↓
+PostgreSQL
+```
+
+---
+
 # Fluxo da API
 
-1. O cliente envia uma requisição HTTP para o Controller
-2. O Controller recebe os dados da simulação
-3. O Controller envia os dados para o Service
-4. O Service executa as regras de negócio
-5. Os cálculos são realizados
-6. A API retorna os resultados em JSON
+1. O cliente envia uma requisição HTTP  
+2. O Controller recebe os dados  
+3. O Controller chama o Service  
+4. O Service executa a lógica de negócio  
+5. O Entity Framework Core gera SQL automaticamente  
+6. O PostgreSQL executa as operações  
+7. A API retorna respostas em JSON  
+
+---
+
+# Conceitos Aplicados
+
+O projeto utiliza diversos conceitos importantes de desenvolvimento backend:
+
+- API REST
+- arquitetura em camadas
+- ORM
+- Entity Framework Core
+- Dependency Injection
+- DTOs
+- Services
+- Controllers
+- LINQ
+- async/await
+- migrations
+- persistência de dados
+- PostgreSQL
+- separação de responsabilidades
 
 ---
 
@@ -176,11 +319,12 @@ FinancingSimulatorApi/
 
 O projeto continuará evoluindo com:
 
-- integração com PostgreSQL
-- Entity Framework Core
+- relacionamento entre usuários e simulações
+- persistência de histórico de simulações
 - autenticação JWT
-- login de usuários
-- salvamento de simulações
+- hash de senha com BCrypt
+- autorização por usuário
+- validações avançadas
 - front-end React
 - deploy em nuvem
 - documentação completa da API
@@ -189,12 +333,16 @@ O projeto continuará evoluindo com:
 
 # Objetivo Futuro
 
-O objetivo final é transformar o projeto em uma aplicação completa, contendo:
+O objetivo final é transformar o projeto em uma aplicação completa contendo:
 
 - API REST
-- autenticação
-- banco de dados
-- front-end React
+- autenticação JWT
+- PostgreSQL
+- Entity Framework Core
 - persistência de simulações
+- front-end React
 - arquitetura profissional
 - deploy completo
+- autenticação de usuários
+- histórico de simulações
+- aplicação fullstack completa
