@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using SimuladorFinanciamentoApi.Data;
 using SimuladorFinanciamentoApi.DTOs;
@@ -45,6 +46,57 @@ namespace SimuladorFinanciamentoApi.Services
                     Email = u.Email
                 })
                 .ToListAsync();
+        }
+
+        public async Task<UsuarioResponseDto?> ObterUsuarioPorId(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+            {
+                return null;
+            }
+
+            return new UsuarioResponseDto
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Email = usuario.Email
+            };   
+        }
+
+        public async Task<UsuarioResponseDto?> AtualizarUsuario(int id, AtualizarUsuarioDto dto)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if(usuario == null)
+            {
+                return null;
+            }
+
+            usuario.Nome = dto.Nome;
+            usuario.Email = dto.Email;
+
+            await _context.SaveChangesAsync();
+
+            return new UsuarioResponseDto
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Email = usuario.Email
+            };
+        }
+
+        public async Task<bool> DeletarUsuario(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+            {
+                return false;
+            }
+
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

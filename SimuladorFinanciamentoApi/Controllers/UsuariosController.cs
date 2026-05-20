@@ -35,5 +35,45 @@ namespace SimuladorFinanciamentoApi.Controllers
             var usuarios = await _usuarioService.ListarUsuarios();
             return Ok(usuarios);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObterUsuarioPorId(int id)
+        {
+            var usuario = await _usuarioService.ObterUsuarioPorId(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return Ok(usuario);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarUsuario(int id, AtualizarUsuarioDto dto)
+        {
+            try
+            {
+                var usuarioAtualizado = await _usuarioService.AtualizarUsuario(id, dto);
+                if (usuarioAtualizado == null)
+                {
+                    return NotFound();
+                }
+                return Ok(usuarioAtualizado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletarUsuario(int id)
+        {
+            var removido = await _usuarioService.DeletarUsuario(id);
+            if (!removido)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }
