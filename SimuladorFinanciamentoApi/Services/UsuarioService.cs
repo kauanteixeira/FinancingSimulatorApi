@@ -1,6 +1,4 @@
-using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.AspNetCore.Http.HttpResults;
+using BCrypt.Net;
 using Microsoft.EntityFrameworkCore;
 using SimuladorFinanciamentoApi.Data;
 using SimuladorFinanciamentoApi.DTOs;
@@ -18,11 +16,12 @@ namespace SimuladorFinanciamentoApi.Services
 
         public async Task<UsuarioResponseDto> CriarUsuario(CriarUsuarioDto dto)
         {
+            var senhaHash = BCrypt.Net.BCrypt.HashPassword(dto.Senha);
             var usuario = new Usuario
             {
                 Nome = dto.Nome,
                 Email = dto.Email,
-                SenhaHash = dto.Senha
+                SenhaHash = senhaHash
             };
 
             _context.Usuarios.Add(usuario);

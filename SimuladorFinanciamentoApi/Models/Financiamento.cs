@@ -1,7 +1,3 @@
-using System;
-using System.Globalization;
-using System.Collections.Generic;
-
 namespace SimuladorFinanciamentoApi.Models
 {
     public class Financiamento

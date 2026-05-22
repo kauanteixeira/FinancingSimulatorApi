@@ -1,10 +1,11 @@
 using SimuladorFinanciamentoApi.Services;
 using SimuladorFinanciamentoApi.DTOs;
-using SimuladorFinanciamentoApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SimuladorFinanciamentoApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuariosController : ControllerBase
@@ -15,6 +16,7 @@ namespace SimuladorFinanciamentoApi.Controllers
             _usuarioService = usuarioService;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> CriarUsuario(CriarUsuarioDto dto)
         {

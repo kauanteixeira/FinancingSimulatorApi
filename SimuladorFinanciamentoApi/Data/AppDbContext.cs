@@ -9,5 +9,6 @@ namespace SimuladorFinanciamentoApi.Data
         {
         }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Simulacao> Simulacoes { get; set; }
     }
 }
