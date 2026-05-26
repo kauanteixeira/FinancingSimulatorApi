@@ -107,27 +107,47 @@ URL Base Local: http://localhost:5024
 
 ### Swagger
 
-![Rotas e Documentação no Swagger](./Assets%20Project/PrintRoutesSwagger.png)
+- Rotas e Documentação no Swagger
+  ![Rotas e Documentação no Swagger](./Assets%20Project/PrintRoutesSwagger.png)
 
 ### Postman Usuário
 
-![Listar usuário (GET) Postman](./Assets%20Project/Postman/GetUserByIdPostman.png)
-![Criar usuário (POST) Postman](./Assets%20Project/Postman/CreateUserPostman.png)
-![Atualizar usuário (PUT) Postman](./Assets%20Project/Postman/PutUserPostman.png)
-![Deletar usuário (DELETE) Postman](./Assets%20Project/Postman/DeleteUserPostman.png)
-![Testes de login no Postman](./Assets%20Project/Postman/loginPostman.png)
+- Listar usuário (GET) Postman
+  ![Listar usuário (GET) Postman](./Assets%20Project/Postman/GetUserByIdPostman.png)
+
+- Criar usuário (POST) Postman
+  ![Criar usuário (POST) Postman](./Assets%20Project/Postman/CreateUserPostman.png)
+
+- Atualizar usuário (PUT) Postman
+  ![Atualizar usuário (PUT) Postman](./Assets%20Project/Postman/PutUserPostman.png)
+
+- Deletar usuário (DELETE) Postman
+  ![Deletar usuário (DELETE) Postman](./Assets%20Project/Postman/DeleteUserPostman.png)
+
+- Testes de login no Postman
+  ![Testes de login no Postman](./Assets%20Project/Postman/loginPostman.png)
 
 ### Postman Simulação
 
-![Realizar simulação](./Assets%20Project/SimulationPostman.png)
-![Realizar e salvar simulação](./Assets%20Project/SimulateSavePostman.png)
-![Listar simulação pelo ID](./Assets%20Project/FindSimulationPostman.png)
+- Realizar simulação
+  ![Realizar simulação](./Assets%20Project/SimulationPostman.png)
+
+- Realizar e salvar simulação
+  ![Realizar e salvar simulação](./Assets%20Project/SimulateSavePostman.png)
+
+- Listar simulação pelo ID
+  ![Listar simulação pelo ID](./Assets%20Project/FindSimulationPostman.png)
 
 ### DBeaver
 
-![Tabela de usuários no DBeaver](./Assets%20Project/DBeaver/UserTableDBeaverPgSQL.png)
-![Tabela de simulações no DBeaver](./Assets%20Project/DBeaver/SimulationTableDBeaverPgSQL.png)
-![Diagrama de relacionamento no DBeaver](./Assets%20Project/DBeaver/DiagramDBeaverPgSQL.png)
+- Tabela de usuários no DBeaver
+  ![Tabela de usuários no DBeaver](./Assets%20Project/DBeaver/UserTableDBeaverPgSQL.png)
+
+- Tabela de simulações no DBeaver
+  ![Tabela de simulações no DBeaver](./Assets%20Project/DBeaver/SimulationTableDBeaverPgSQL.png)
+
+- Diagrama de relacionamento no DBeaver
+  ![Diagrama de relacionamento no DBeaver](./Assets%20Project/DBeaver/DiagramDBeaverPgSQL.png)
 
 ## Estado Atual do Projeto
 
