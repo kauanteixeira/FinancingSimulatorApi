@@ -1,4 +1,4 @@
-namespace SimuladorFinanciamentoApi.Models
+namespace SimuladorFinanciamentoApi.DTOs
 {
     public class UsuarioResponseDto
     {

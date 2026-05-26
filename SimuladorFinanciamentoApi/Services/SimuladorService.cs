@@ -13,8 +13,25 @@ namespace SimuladorFinanciamentoApi.Services
             _priceService = priceService;
         }
 
+        private void ValidarRequest(SimulacaoRequestDto request)
+        {
+            if (request.ValorEntrada >= request.ValorImovel)
+            {
+                throw new ArgumentException("O valor de entrada deve ser menor que o valor do imóvel.");
+            }
+
+            string tipo = request.TipoFinanciamento.Trim().ToUpper();
+            
+            if (tipo != "SAC" && tipo != "PRICE")
+            {
+                throw new ArgumentException("Tipo de financiamento deve ser 'SAC' ou 'PRICE'.");
+            }
+        }
+
        public SimulacaoResponseDto SimularFinanciamento(SimulacaoRequestDto request)
         {
+            ValidarRequest(request);
+
             var financiamento = new Financiamento();
 
             financiamento.ValorImovel =  request.ValorImovel;
@@ -27,17 +44,14 @@ namespace SimuladorFinanciamentoApi.Services
             double taxaMensal = financiamento.ConverterTaxa();
             
             List<Parcela> parcelas;
+
             if (financiamento.TipoFinanciamento == "SAC")
             {
                 parcelas = _sacService.CalcularParcelas(valorFinanciado, taxaMensal, financiamento.PrazoFinanciamento);
             }
-            else if (financiamento.TipoFinanciamento == "PRICE")
-            {
-                parcelas = _priceService.CalcularParcelas(valorFinanciado, taxaMensal, financiamento.PrazoFinanciamento);
-            }
             else
             {
-                throw new ArgumentException("Tipo de financiamento não suportado");
+                parcelas = _priceService.CalcularParcelas(valorFinanciado, taxaMensal, financiamento.PrazoFinanciamento);
             }
 
             var resumo = financiamento.CalcularTotais(parcelas);

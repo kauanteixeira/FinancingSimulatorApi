@@ -23,11 +23,11 @@ namespace SimuladorFinanciamentoApi.Controllers
             try
             {
                 var resultado = _simuladorService.SimularFinanciamento(request);    
-                return Ok(resultado);
+                return Ok(ApiResponseDto<SimulacaoResponseDto>.Ok(resultado, "Simulação realizada com sucesso."));
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return BadRequest(ApiResponseDto<object>.Fail(ex.Message));
             }
         }
 
@@ -41,7 +41,7 @@ namespace SimuladorFinanciamentoApi.Controllers
 
                 if (usuarioIdClaim == null)
                 {
-                    return Unauthorized();
+                    return Unauthorized(ApiResponseDto<object>.Fail("Usuário não autenticado."));
                 }
 
                 var usuarioId = int.Parse(usuarioIdClaim);
@@ -51,11 +51,11 @@ namespace SimuladorFinanciamentoApi.Controllers
                     usuarioId
                 );
 
-                return Ok(resultado);
+                return Ok(ApiResponseDto<SimulacaoResponseDto>.Ok(resultado, "Simulação realizada e salva com sucesso."));
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return BadRequest(ApiResponseDto<object>.Fail(ex.Message));
             }
         }
 
@@ -67,13 +67,13 @@ namespace SimuladorFinanciamentoApi.Controllers
 
             if (usuarioIdClaim == null)
             {
-                return Unauthorized();
+                return Unauthorized(ApiResponseDto<object>.Fail("Usuário não autenticado."));
             }
 
             var usuarioId = int.Parse(usuarioIdClaim);
 
             var historico = await _simulacaoService.ObterHistoricoSimulacoes(usuarioId);
-            return Ok(historico);
+            return Ok(ApiResponseDto<List<SimulacaoHistoricoDto>>.Ok(historico, "Histórico de simulações obtido com sucesso."));
         }
 
         [Authorize]
@@ -86,7 +86,7 @@ namespace SimuladorFinanciamentoApi.Controllers
 
                 if (usuarioIdClaim == null)
                 {
-                    return Unauthorized();
+                    return Unauthorized(ApiResponseDto<object>.Fail("Usuário não autenticado."));
                 }
 
                 var usuarioId = int.Parse(usuarioIdClaim);
@@ -94,14 +94,14 @@ namespace SimuladorFinanciamentoApi.Controllers
                 var detalhes = await _simulacaoService.ObterDetalhesSimulacao(id, usuarioId);
                 if (detalhes == null)
                 {
-                    return NotFound();
+                    return NotFound(ApiResponseDto<object>.Fail("Simulação não encontrada."));
                 }
 
-                return Ok(detalhes);
+                return Ok(ApiResponseDto<SimulacaoResponseDto>.Ok(detalhes, "Detalhes da simulação obtidos com sucesso."));
             } 
             catch (ArgumentException ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return BadRequest(ApiResponseDto<object>.Fail(ex.Message));
             }
         }
 

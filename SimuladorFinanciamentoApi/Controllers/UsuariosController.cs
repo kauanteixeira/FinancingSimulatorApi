@@ -23,11 +23,11 @@ namespace SimuladorFinanciamentoApi.Controllers
             try
             {
                 var usuarioCriado = await _usuarioService.CriarUsuario(dto);
-                return Ok(usuarioCriado);
+                return Ok(ApiResponseDto<UsuarioResponseDto>.Ok(usuarioCriado, "Usuário criado com sucesso."));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return BadRequest(ApiResponseDto<object>.Fail(ex.Message));
             }
         }
 
@@ -35,7 +35,7 @@ namespace SimuladorFinanciamentoApi.Controllers
         public async Task<IActionResult> ListarUsuarios()
         {
             var usuarios = await _usuarioService.ListarUsuarios();
-            return Ok(usuarios);
+            return Ok(ApiResponseDto<List<UsuarioResponseDto>>.Ok(usuarios, "Usuários listados com sucesso."));
         }
 
         [HttpGet("{id}")]
@@ -44,9 +44,9 @@ namespace SimuladorFinanciamentoApi.Controllers
             var usuario = await _usuarioService.ObterUsuarioPorId(id);
             if (usuario == null)
             {
-                return NotFound();
+                return NotFound(ApiResponseDto<object>.Fail("Usuário não encontrado."));
             }
-            return Ok(usuario);
+            return Ok(ApiResponseDto<UsuarioResponseDto>.Ok(usuario, "Usuário encontrado com sucesso."));
         }
 
         [HttpPut("{id}")]
@@ -57,13 +57,13 @@ namespace SimuladorFinanciamentoApi.Controllers
                 var usuarioAtualizado = await _usuarioService.AtualizarUsuario(id, dto);
                 if (usuarioAtualizado == null)
                 {
-                    return NotFound();
+                    return NotFound(ApiResponseDto<object>.Fail("Usuário não encontrado."));
                 }
-                return Ok(usuarioAtualizado);
+                return Ok(ApiResponseDto<UsuarioResponseDto>.Ok(usuarioAtualizado, "Usuário atualizado com sucesso."));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return BadRequest(ApiResponseDto<object>.Fail(ex.Message));
             }
         }
 
@@ -73,9 +73,9 @@ namespace SimuladorFinanciamentoApi.Controllers
             var removido = await _usuarioService.DeletarUsuario(id);
             if (!removido)
             {
-                return NotFound();
+                return NotFound(ApiResponseDto<object>.Fail("Usuário não encontrado."));
             }
-            return NoContent();
+            return Ok(ApiResponseDto<object>.Ok(null!, "Usuário deletado com sucesso."));
         }
     }
 }

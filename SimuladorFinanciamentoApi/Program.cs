@@ -48,7 +48,24 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+// Configuração do CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirFront", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+// HTTPS
+app.UseHttpsRedirection();
+
+// Habilita CORS
+app.UseCors("PermitirFront");
 
 // Middleware de autenticação
 app.UseAuthentication();
@@ -57,12 +74,6 @@ app.UseAuthorization();
 // Habilita Swagger
 app.UseSwagger();
 app.UseSwaggerUI();
-
-// HTTPS
-app.UseHttpsRedirection();
-
-// Autorização
-app.UseAuthorization();
 
 // Mapeia os controllers
 app.MapControllers();

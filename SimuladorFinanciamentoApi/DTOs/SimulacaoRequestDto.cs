@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SimuladorFinanciamentoApi.DTOs
@@ -18,7 +17,7 @@ namespace SimuladorFinanciamentoApi.DTOs
         public double TaxaJuros { get; set; }
 
         [Required(ErrorMessage = "O prazo do financiamento é obrigatório.")]
-        [Range(1, int.MaxValue, ErrorMessage = "O prazo do financiamento deve ser um número positivo.")]
+        [Range(1, 420, ErrorMessage = "O prazo do financiamento deve ser um número positivo.")]
         public int PrazoFinanciamento { get; set; }
 
         [Required(ErrorMessage = "O tipo de financiamento é obrigatório.")]

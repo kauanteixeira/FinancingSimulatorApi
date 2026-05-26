@@ -25,10 +25,10 @@ namespace SimuladorFinanciamentoApi.Controllers
         {
             var usuario = await _loginService.Login(dto);
             if (usuario == null)
-                return Unauthorized(new { error = "Email ou senha inválidos" });
+                return Unauthorized(ApiResponseDto<object>.Fail("Credenciais inválidas."));
 
             var token = _tokenService.GerarToken(usuario);
-            return Ok(new { token });
+            return Ok(ApiResponseDto<object>.Ok(new { token }, "Login realizado com sucesso."));
         }
 
         [Authorize]
@@ -39,7 +39,7 @@ namespace SimuladorFinanciamentoApi.Controllers
             var userName = User.FindFirstValue(ClaimTypes.Name);
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            return Ok(new { userId, userName, userEmail });
+            return Ok(ApiResponseDto<object>.Ok(new { userId, userName, userEmail }, "Informações do usuário obtidas com sucesso."));
         }
 
     }
